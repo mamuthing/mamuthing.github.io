@@ -238,23 +238,24 @@
         <h2 style="margin-top: 40px;">Willi & Chomsatun</h2>
     </div>
 
-    <!-- Elemen Audio (Tersembunyi) -->
-    <!-- Ganti 'instrumen.mp3' dengan nama file lagu Anda -->
-    <audio id="bg-music" loop>
+    <!-- Elemen Audio (Dengan atribut autoplay) -->
+    <audio id="bg-music" loop autoplay>
         <source src="instrumen.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Tombol Musik Mengambang -->
-    <button id="musicBtn" class="music-btn" onclick="toggleMusic()">
+    <button id="musicBtn" class="music-btn" onclick="toggleMusic(event)">
         🎵 Putar Musik
     </button>
 
-    <!-- Skrip JavaScript untuk Play/Pause -->
+    <!-- Skrip JavaScript untuk Play/Pause & Autoplay Handle -->
     <script>
         var music = document.getElementById("bg-music");
         var btn = document.getElementById("musicBtn");
 
-        function toggleMusic() {
+        // Fungsi utama untuk memutar/menjeda musik
+        function toggleMusic(e) {
+            if (e) e.stopPropagation(); // Mencegah bentrok dengan klik body
             if (music.paused) {
                 music.play();
                 btn.innerHTML = "⏸ Jeda Musik";
@@ -263,6 +264,24 @@
                 btn.innerHTML = "🎵 Putar Musik";
             }
         }
+
+        // 1. Coba putar otomatis saat halaman dimuat
+        window.addEventListener('load', function() {
+            music.play().then(function() {
+                btn.innerHTML = "⏸ Jeda Musik"; // Berhasil autoplay
+            }).catch(function(error) {
+                // Autoplay diblokir browser, kembalikan teks tombol
+                btn.innerHTML = "🎵 Putar Musik";
+            });
+        });
+
+        // 2. Putar otomatis pada interaksi pertama tamu di layar (klik/sentuh)
+        document.body.addEventListener('click', function() {
+            if (music.paused) {
+                music.play();
+                btn.innerHTML = "⏸ Jeda Musik";
+            }
+        }, { once: true }); // event {once: true} membuat perintah ini hanya berjalan 1 kali saja
     </script>
 
 </body>
