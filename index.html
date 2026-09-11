@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Willi & Chomsatun</title>
+    
+    <!-- Meta Tags untuk Preview Link WhatsApp -->
+    <meta property="og:title" content="The Wedding of Willi dan Chom">
+    <meta property="og:description" content="Kamis, 24 September 2026 | Merupakan suatu kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir memberikan doa restu.">
+    <!-- Ganti link gambar di bawah dengan link foto asli Anda nanti -->
+    <meta property="og:image" content="https://images.unsplash.com/photo-1532712938730-4e1ca1452680?w=600&q=80">
+    <meta property="og:url" content="https://username-anda.github.io/undangan-romeojuliet/">
+    <meta property="og:type" content="website">
+
+    <!-- Import Font dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Pengaturan Dasar */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FAFAFA;
+            color: #333;
+            text-align: center;
+        }
+        
+        /* Tipografi Utama */
+        h1, h2, h3, .nama-mempelai {
+            font-family: 'Playfair Display', serif;
+            font-weight: normal;
+            color: #2C3E50;
+        }
+
+        /* Bagian Sampul / Hero */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            overflow: hidden;
+            /* Ubah warna dasar menjadi hitam pekat agar menyatu dengan background foto */
+            background-color: #000000;
+        }
+
+        .foto-sampul {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Pengaturan untuk Layar Kecil (HP) */
+        .foto-sampul img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top; /* Fokus ke area wajah */
+        }
+
+        /* Pengaturan Khusus Layar Lebar (Tablet / Komputer) */
+        @media (min-width: 768px) {
+            .foto-sampul img {
+                object-fit: contain; /* Memaksa foto tampil keseluruhan tanpa ada yang dipotong */
+                object-position: center;
+            }
+            .hero-text {
+                padding-bottom: 30px; /* Menyesuaikan jarak teks agar tidak menabrak foto di layar lebar */
+            }
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 120px 20px 50px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            color: #FFFFFF; 
+        }
+
+        .hero-text h1.nama-mempelai {
+            color: #FFFFFF; 
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        
+        .hero-text p {
+            color: #EEEEEE;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Bagian Konten */
+        .konten {
+            padding: 60px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .kartu-jadwal {
+            background: #FFFFFF;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        /* Peta Google Maps Responsif */
+        .map-responsive {
+            overflow: hidden;
+            padding-bottom: 75%;
+            position: relative;
+            height: 0;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .map-responsive iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            border: 0;
+        }
+
+        /* Tombol Peta */
+        .btn-peta {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #2C3E50;
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            transition: background 0.3s ease;
+        }
+        .btn-peta:hover {
+            background-color: #1A252F;
+        }
+
+        @media (max-width: 600px) {
+            .nama-mempelai { font-size: 2.5em; }
+            .konten { padding: 40px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SAMPUL UNDANGAN -->
+    <div class="hero">
+        
+        <!-- Area Foto Sampul (1 Foto) -->
+        <div class="foto-sampul">
+            <!-- Placeholder Unsplash (Ganti dengan foto 1080x1920px asli Anda) -->
+            <img src="sampul.png" alt="Willi & Chomsatun">
+        </div>
+        
+        <div class="hero-text">
+            <p>THE WEDDING OF</p>
+            <h1 class="nama-mempelai">Willi & Chomsatun</h1>
+            <p class="tanggal-hero">24 September 2026</p>
+        </div>
+        
+    </div>
+
+    <!-- KATA PENGANTAR -->
+    <div class="konten">
+        <p><i>Bismillahirrahmanirrahim. <br> Assalamu’alaikum Warahmatullahi Wabarakatuh.</i></p>
+        <p>Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan acara pernikahan putra-putri kami. Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
+    </div>
+
+    <!-- DETAIL ACARA -->
+    <div class="konten" style="padding-top: 0;">
+        
+        <div class="kartu-jadwal">
+            <h2>Akad Nikah</h2>
+            <p><strong>Kamis, 24 September 2026</strong><br>Pukul 08.00 WIB - Selesai</p>
+        </div>
+        
+        <div class="kartu-jadwal">
+            <h2>Resepsi</h2>
+            <p><strong>Kamis, 24 September 2026</strong><br>Pukul 11.00 WIB - Selesai</p>
+        </div>
+
+        <div class="kartu-jadwal">
+            <h2>Lokasi Acara</h2>
+            <p><strong>Sirancah, RT 01/RW 06, Kedalon, Kalikajar, Wonosobo</strong></p>
+            
+            <div class="map-responsive">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4775.531460755553!2d109.97567717581104!3d-7.417864273062322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a99aa6477e773%3A0x3c29315e1af8317a!2swilhanu%20studio!5e1!3m2!1sid!2sid!4v1789096979743!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+
+            <a href="https://maps.app.goo.gl/Fk9zS3Mh4n1tX1b9" target="_blank" class="btn-peta">Buka Aplikasi Maps</a>
+        </div>
+
+    </div>
+
+    <!-- PENUTUP -->
+    <div class="konten" style="padding-top: 0; padding-bottom: 80px;">
+        <p>Atas kehadiran dan doa restu yang diberikan, kami ucapkan terima kasih.</p>
+        <p><i>Wassalamu’alaikum Warahmatullahi Wabarakatuh.</i></p>
+        <h2 style="margin-top: 40px;">Willi & Chomsatun</h2>
+    </div>
+
+</body>
+</html>
