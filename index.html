@@ -8,7 +8,6 @@
     <!-- Meta Tags untuk Preview Link WhatsApp -->
     <meta property="og:title" content="Undangan Pernikahan Willi & Chomsatun">
     <meta property="og:description" content="Kamis, 24 September 2026">
-    <!-- Ganti link gambar di bawah dengan link foto asli Anda nanti -->
     <meta property="og:image" content="https://mamuthing.github.io/sampul-baru.png">
     <meta property="og:url" content="https://mamuthing.github.io">
     <meta property="og:type" content="website">
@@ -17,6 +16,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
+        /* Kunci Guliran Layar Awal */
+        body.locked {
+            overflow: hidden;
+            height: 100vh;
+        }
+
         /* Pengaturan Dasar */
         body {
             font-family: 'Montserrat', sans-serif;
@@ -43,7 +48,6 @@
             justify-content: flex-end;
             align-items: center;
             overflow: hidden;
-            /* Ubah warna dasar menjadi hitam pekat agar menyatu dengan background foto */
             background-color: #000000;
         }
 
@@ -56,26 +60,11 @@
             z-index: 1;
         }
 
-        /* Pengaturan untuk Layar Kecil (HP) */
         .foto-sampul img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            object-position: bottom; /* Fokus ke area wajah */
-        }
-        .hero-text {
-            padding-bottom: 30px; /* Menyesuaikan jarak teks agar tidak menabrak foto di layar lebar */
-        }
-
-        /* Pengaturan Khusus Layar Lebar (Tablet / Komputer) */
-        @media (min-width: 768px) {
-            .foto-sampul img {
-                object-fit: contain; /* Memaksa foto tampil keseluruhan tanpa ada yang dipotong */
-                object-position: center;
-            }
-            .hero-text {
-                padding-bottom: 30px; /* Menyesuaikan jarak teks agar tidak menabrak foto di layar lebar */
-            }
+            object-position: bottom;
         }
 
         .hero-text {
@@ -85,16 +74,54 @@
             padding: 120px 20px 50px;
             background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
             color: #FFFFFF; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .hero-text h1.nama-mempelai {
             color: #FFFFFF; 
             text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            margin: 10px 0;
         }
         
         .hero-text p {
             color: #EEEEEE;
             text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            margin: 5px 0;
+        }
+
+        /* Tombol Buka Undangan */
+        .btn-buka {
+            padding: 12px 30px;
+            background-color: #FFFFFF;
+            color: #111;
+            border: none;
+            border-radius: 30px;
+            margin-top: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+        }
+
+        .btn-buka:hover {
+            background-color: #E0E0E0;
+            transform: translateY(-2px);
+        }
+
+        /* Pengaturan Khusus Layar Lebar (Tablet / Komputer) */
+        @media (min-width: 768px) {
+            .foto-sampul img {
+                object-fit: contain;
+                object-position: center;
+            }
+            .hero-text {
+                padding-bottom: 30px;
+            }
         }
 
         /* Bagian Konten */
@@ -111,6 +138,27 @@
             margin: 20px 0;
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        /* Kotak Rekening */
+        .rek-box {
+            background-color: #F8F9FA;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid #EAEAEA;
+        }
+
+        .rek-box h3 {
+            margin: 0 0 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .rek-box p {
+            margin: 0;
+            font-size: 14px;
         }
 
         /* Peta Google Maps Responsif */
@@ -154,40 +202,15 @@
             .nama-mempelai { font-size: 2.5em; }
             .konten { padding: 40px 15px; }
         }
-        /* Tombol Musik Mengambang */
-        .music-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #2C3E50;
-            color: #FFFFFF;
-            border: none;
-            border-radius: 50px;
-            padding: 12px 20px;
-            font-size: 14px;
-            font-family: 'Montserrat', sans-serif;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            cursor: pointer;
-            z-index: 9999; /* Memastikan tombol selalu berada di paling atas */
-            transition: background 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .music-btn:hover {
-            background-color: #1A252F;
-        }
     </style>
 </head>
-<body>
+<body class="locked">
 
     <!-- SAMPUL UNDANGAN -->
     <div class="hero">
         
         <!-- Area Foto Sampul (1 Foto) -->
         <div class="foto-sampul">
-            <!-- Placeholder Unsplash (Ganti dengan foto 1080x1920px asli Anda) -->
             <img src="sampul-baru.png" alt="Willi & Chomsatun">
         </div>
         
@@ -195,12 +218,14 @@
             <p>THE WEDDING OF</p>
             <h1 class="nama-mempelai">Willi & Chomsatun</h1>
             <p class="tanggal-hero">24 September 2026</p>
+            <!-- Tombol Buka Undangan -->
+            <button id="btnBuka" class="btn-buka" onclick="bukaUndangan()">Buka Undangan</button>
         </div>
         
     </div>
 
-    <!-- KATA PENGANTAR -->
-    <div class="konten">
+    <!-- KATA PENGANTAR (Ditambahkan id konten-awal sebagai target scroll) -->
+    <div id="konten-awal" class="konten">
         <p><i>Bismillahirrahmanirrahim. <br> Assalamu’alaikum Warahmatullahi Wabarakatuh.</i></p>
         <p>Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan acara pernikahan putra-putri kami. Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
     </div>
@@ -229,6 +254,24 @@
             <a href="https://maps.app.goo.gl/p9F8DQJN9RfbTChy9" target="_blank" class="btn-peta">Buka Aplikasi Maps</a>
         </div>
 
+        <!-- KARTU REKENING HADIAH -->
+        <div class="kartu-jadwal">
+            <h2>Kirim Hadiah</h2>
+            <p>Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun, jika Bapak/Ibu/Saudara/i bermaksud memberikan hadiah, dapat melalui rekening di bawah ini:</p>
+            
+            <div class="rek-box">
+                <h3>Bank BCA</h3>
+                <p><strong>1234567890</strong></p>
+                <p>a.n. Willi</p>
+            </div>
+
+            <div class="rek-box">
+                <h3>Bank Mandiri</h3>
+                <p><strong>185-000-088-4046</strong></p>
+                <p>a.n. Chomsatun</p>
+            </div>
+        </div>
+
     </div>
 
     <!-- PENUTUP -->
@@ -238,63 +281,29 @@
         <h2 style="margin-top: 40px;">Willi & Chomsatun</h2>
     </div>
 
-    <!-- Elemen Audio (Dengan atribut autoplay) -->
-    <audio id="bg-music" loop autoplay>
+    <!-- Elemen Audio (Autoplay dihilangkan, dipicu oleh tombol) -->
+    <audio id="bg-music" loop>
         <source src="instrumen.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Tombol Musik Mengambang -->
-    <button id="musicBtn" class="music-btn" onclick="toggleMusic(event)">
-        🎵 Putar Musik
-    </button>
-
-    <!-- Skrip JavaScript untuk Play/Pause & Autoplay Agresif -->
+    <!-- Skrip Buka Undangan & Putar Musik -->
     <script>
-        var music = document.getElementById("bg-music");
-        var btn = document.getElementById("musicBtn");
-        var isPlaying = false;
-
-        function toggleMusic(e) {
-            if (e) e.stopPropagation();
-            if (music.paused) {
-                music.play();
-                btn.innerHTML = "⏸ Jeda Musik";
-                isPlaying = true;
-            } else {
-                music.pause();
-                btn.innerHTML = "🎵 Putar Musik";
-                isPlaying = false;
-            }
-        }
-
-        // Fungsi pemutar otomatis yang menempel pada berbagai jenis interaksi
-        function autoPlayMuisc() {
-            if (!isPlaying) {
-                music.play().then(function() {
-                    btn.innerHTML = "⏸ Jeda Musik";
-                    isPlaying = true;
-                    // Hapus pendeteksi setelah musik berhasil berputar agar web tidak berat
-                    ['click', 'touchstart', 'scroll'].forEach(function(evt) {
-                        window.removeEventListener(evt, autoPlayMuisc);
-                    });
-                }).catch(function(error) {
-                    console.log("Autoplay masih diblokir browser");
-                });
-            }
-        }
-
-        // 1. Coba putar otomatis saat halaman pertama dimuat
-        window.addEventListener('load', function() {
-            music.play().then(function() {
-                btn.innerHTML = "⏸ Jeda Musik";
-                isPlaying = true;
-            }).catch(function() {
-                // Jika gagal, siapkan pendeteksi interaksi agresif (scroll, sentuh, klik)
-                ['click', 'touchstart', 'scroll'].forEach(function(evt) {
-                    window.addEventListener(evt, autoPlayMuisc, { once: true });
-                });
+        function bukaUndangan() {
+            // 1. Membuka kunci gulir layar
+            document.body.classList.remove('locked');
+            
+            // 2. Memutar Musik secara legal (karena dipicu klik user)
+            var music = document.getElementById("bg-music");
+            music.play().catch(function(err) {
+                console.log("Audio diblokir perangkat.");
             });
-        });
+
+            // 3. Menghilangkan tombol Buka Undangan
+            document.getElementById('btnBuka').style.display = 'none';
+
+            // 4. Menggulir layar perlahan ke konten pengantar
+            document.getElementById('konten-awal').scrollIntoView({ behavior: 'smooth' });
+        }
     </script>
 
 </body>
