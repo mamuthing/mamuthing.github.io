@@ -248,40 +248,53 @@
         🎵 Putar Musik
     </button>
 
-    <!-- Skrip JavaScript untuk Play/Pause & Autoplay Handle -->
+    <!-- Skrip JavaScript untuk Play/Pause & Autoplay Agresif -->
     <script>
         var music = document.getElementById("bg-music");
         var btn = document.getElementById("musicBtn");
+        var isPlaying = false;
 
-        // Fungsi utama untuk memutar/menjeda musik
         function toggleMusic(e) {
-            if (e) e.stopPropagation(); // Mencegah bentrok dengan klik body
+            if (e) e.stopPropagation();
             if (music.paused) {
                 music.play();
                 btn.innerHTML = "⏸ Jeda Musik";
+                isPlaying = true;
             } else {
                 music.pause();
                 btn.innerHTML = "🎵 Putar Musik";
+                isPlaying = false;
             }
         }
 
-        // 1. Coba putar otomatis saat halaman dimuat
+        // Fungsi pemutar otomatis yang menempel pada berbagai jenis interaksi
+        function autoPlayMuisc() {
+            if (!isPlaying) {
+                music.play().then(function() {
+                    btn.innerHTML = "⏸ Jeda Musik";
+                    isPlaying = true;
+                    // Hapus pendeteksi setelah musik berhasil berputar agar web tidak berat
+                    ['click', 'touchstart', 'scroll'].forEach(function(evt) {
+                        window.removeEventListener(evt, autoPlayMuisc);
+                    });
+                }).catch(function(error) {
+                    console.log("Autoplay masih diblokir browser");
+                });
+            }
+        }
+
+        // 1. Coba putar otomatis saat halaman pertama dimuat
         window.addEventListener('load', function() {
             music.play().then(function() {
-                btn.innerHTML = "⏸ Jeda Musik"; // Berhasil autoplay
-            }).catch(function(error) {
-                // Autoplay diblokir browser, kembalikan teks tombol
-                btn.innerHTML = "🎵 Putar Musik";
+                btn.innerHTML = "⏸ Jeda Musik";
+                isPlaying = true;
+            }).catch(function() {
+                // Jika gagal, siapkan pendeteksi interaksi agresif (scroll, sentuh, klik)
+                ['click', 'touchstart', 'scroll'].forEach(function(evt) {
+                    window.addEventListener(evt, autoPlayMuisc, { once: true });
+                });
             });
         });
-
-        // 2. Putar otomatis pada interaksi pertama tamu di layar (klik/sentuh)
-        document.body.addEventListener('click', function() {
-            if (music.paused) {
-                music.play();
-                btn.innerHTML = "⏸ Jeda Musik";
-            }
-        }, { once: true }); // event {once: true} membuat perintah ini hanya berjalan 1 kali saja
     </script>
 
 </body>
